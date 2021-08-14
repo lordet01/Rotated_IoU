@@ -1,7 +1,7 @@
 import numpy as np
 import torch
-from box_intersection_2d import box_intersection_th, box_in_box_th, oriented_box_intersection_2d
-from utiles import box2corners, box_intersection, box_in_box, box_intersection_area
+from Rotated_IoU.box_intersection_2d import box_intersection_th, box_in_box_th, oriented_box_intersection_2d
+from Rotated_IoU.utiles import box2corners, box_intersection, box_in_box, box_intersection_area
 
 def test_box_intersection_th():
     box1 = [0, 0, 2, 3, np.pi/6]

@@ -6,7 +6,7 @@ check the calculation if:
     3. input in different scale level
 '''
 import torch
-from oriented_iou_loss import cal_iou
+from Rotated_IoU.oriented_iou_loss import cal_iou
 
 device = torch.device('cuda:0')
 box_0 = torch.tensor([.0, .0, 2., 2., .0], device=device)
