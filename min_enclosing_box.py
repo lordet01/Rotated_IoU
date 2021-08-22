@@ -99,7 +99,7 @@ def point_line_distance_range(lines:torch.Tensor, points:torch.Tensor):
     y = points[..., 1]            # (..., 24, 6)
     den = (y2-y1)*x - (x2-x1)*y + x2*y1 - y2*x1
     # NOTE: the backward pass of torch.sqrt(x) generates NaN if x==0
-    num = torch.sqrt( (y2-y1).square() + (x2-x1).square() + 1e-14 )
+    num = torch.sqrt( (y2-y1).square() + (x2-x1).square() + 1e-4 )
     d = den/num         # (..., 24, 6)
     d_max = d.max(dim=-1)[0]       # (..., 24)
     d_min = d.min(dim=-1)[0]       # (..., 24)
@@ -123,7 +123,7 @@ def point_line_projection_range(lines:torch.Tensor, points:torch.Tensor):
     y1 = lines[..., 0:1, 1]       # (..., 24, 1)
     x2 = lines[..., 1:2, 0]       # (..., 24, 1)
     y2 = lines[..., 1:2, 1]       # (..., 24, 1)
-    k = (y2 - y1)/(x2 - x1 + 1e-8)      # (..., 24, 1)
+    k = (y2 - y1)/(x2 - x1 + 1e-4)      # (..., 24, 1)
     vec = torch.cat([torch.ones_like(k, dtype=k.dtype, device=k.device), k], dim=-1)  # (..., 24, 2)
     vec = vec.unsqueeze(-2)             # (..., 24, 1, 2)
     points_ext = torch.cat([lines, points], dim=-2)         # (..., 24, 8), consider all 8 points

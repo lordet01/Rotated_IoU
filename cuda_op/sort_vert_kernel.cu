@@ -5,7 +5,7 @@
 
 #define MAX_NUM_VERT_IDX 9
 #define INTERSECTION_OFFSET 8
-#define EPSILON 1e-8
+#define EPSILON 1e-4
 
 /*
 compare normalized vertices (vertices around (0,0))

@@ -141,7 +141,7 @@ def main(loss_type:str="giou", enclosing_type:str="aligned"):
 
             if i%10 == 0:
                 iou_mask = (iou > 0).float()
-                mean_iou = torch.sum(iou) / (torch.sum(iou_mask) + 1e-8)
+                mean_iou = torch.sum(iou) / (torch.sum(iou_mask) + 1e-4)
                 print("[Epoch %d: %d/%d] train loss: %.4f  mean_iou: %.4f"
                     %(epoch, i, num_batch, iou_loss.detach().cpu().item(), mean_iou.detach().cpu().item()))
         lr_scheduler.step()
@@ -173,7 +173,7 @@ def main(loss_type:str="giou", enclosing_type:str="aligned"):
                 iou_loss = torch.mean(iou_loss)
                 aver_loss += iou_loss.cpu().item()
                 iou_mask = (iou > 0).float()
-                mean_iou = torch.sum(iou) / (torch.sum(iou_mask) + 1e-8)
+                mean_iou = torch.sum(iou) / (torch.sum(iou_mask) + 1e-4)
                 aver_mean_iou += mean_iou.cpu().item()
         print("... validate epoch %d ..."%epoch)
         n_iter = len(ds_test)/BATCH_SIZE/N_DATA

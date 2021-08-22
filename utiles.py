@@ -7,7 +7,7 @@ author: lanxiao li
 '''
 import numpy as np
 import matplotlib.pyplot as plt
-EPSILON = 1e-8
+EPSILON = 1e-4
 
 def line_seg_intersection(line1:np.array, line2:np.array):
     """find intersection of 2 lines defined by their end points

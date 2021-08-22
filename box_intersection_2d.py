@@ -6,7 +6,7 @@ author: lanxiao li
 '''
 import torch
 from Rotated_IoU.cuda_op.cuda_ext import sort_v
-EPSILON = 1e-8
+EPSILON = 1e-4
 
 def box_intersection_th(corners1:torch.Tensor, corners2:torch.Tensor):
     """find intersection points of rectangles
@@ -74,8 +74,8 @@ def box1_in_box2(corners1:torch.Tensor, corners2:torch.Tensor):
     norm_ad = torch.sum(ad * ad, dim=-1)    # (B, N, 1)
     # NOTE: the expression looks ugly but is stable if the two boxes are exactly the same
     # also stable with different scale of bboxes
-    cond1 = (p_ab / norm_ab > - 1e-6) * (p_ab / norm_ab < 1 + 1e-6)   # (B, N, 4)
-    cond2 = (p_ad / norm_ad > - 1e-6) * (p_ad / norm_ad < 1 + 1e-6)   # (B, N, 4)
+    cond1 = (p_ab / norm_ab > - 1e-4) * (p_ab / norm_ab < 1 + 1e-4)   # (B, N, 4)
+    cond2 = (p_ad / norm_ad > - 1e-4) * (p_ad / norm_ad < 1 + 1e-4)   # (B, N, 4)
     return cond1*cond2
 
 def box_in_box_th(corners1:torch.Tensor, corners2:torch.Tensor):
