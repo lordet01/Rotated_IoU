@@ -165,8 +165,8 @@ def compare_vertices(v1, v2):
     """
     x1, y1 = v1
     x2, y2 = v2
-    n1 = np.sqrt(x1*x1 + y1*y1) + EPSILON
-    n2 = np.sqrt(x2*x2 + y2*y2) + EPSILON
+    n1 = np.sqrt(x1*x1 + y1*y1+1e-14) + EPSILON
+    n2 = np.sqrt(x2*x2 + y2*y2+1e-14) + EPSILON
     if y1 > 0 and y2 < 0:
         return -1
     elif y1 < 0 and y2 > 0:

@@ -232,7 +232,7 @@ def eigenvector_22(x:torch.Tensor):
     a = x[..., 0, 0].double()
     c = x[..., 0, 1].double()
     b = x[..., 1, 1].double()                                # (..., )
-    delta = torch.sqrt(a*a + 4*c*c - 2*a*b + b*b)
+    delta = torch.sqrt(a*a + 4*c*c - 2*a*b + b*b +1e-8)
     v1 = (a - b - delta) / 2. /c
     v1 = torch.stack([v1, torch.ones_like(v1, dtype=torch.double, device=v1.device)], dim=-1)    # (..., 2)
     v2 = (a - b + delta) / 2. /c
